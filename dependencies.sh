@@ -13,7 +13,7 @@ git config --global user.email "meyerkev248@gmail.com"
 git config --global user.name "Kevin Meyer"
 
 cd /tmp
-git checkout https://github.com/meyerkev/turnup.git
+git clone https://github.com/meyerkev/VM-turnup.git
 cd VM-turnup
 
 ansible-playbook ubuntu_basic_config.yaml
