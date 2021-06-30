@@ -26,6 +26,14 @@
       - python-is-python3
       state: latest
     become: yes
+  - name: Copy .vimrc
+    ansible.builtin.copy:
+      src: .vimrc
+      dest: ~/.vimrc
+  - name: Copy .gitignore
+    ansible.builtin.copy:
+      src: .gitignore
+      dest: ~/.gitignore
   - name: Test for pip in PATH
     shell: 
       cmd: "grep 'export PATH=${PATH}:${HOME}/.local/bin' ~/.bashrc"
