@@ -1,11 +1,14 @@
 #/bin/env $(which sh)
 
-sudo apt update && upgrade -y
-sudo apt install -y python-is-python3 python3-distutils vim chromium-browser git 
+set -e
+
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y python-is-python3 python3-distutils vim chromium-browser git wget curl
 sudo usermod -a -G sudo ${USER?}
 
 PIP_INSTALL_PATH=/tmp/get-pip.py
-curl https://bootstrap.pypa.io/get-pip.py -o ${PIP_INSTALL_PATH?}
+# Not the greatest, but some versions of curl don't -o correctly
+curl https://bootstrap.pypa.io/get-pip.py > ${PIP_INSTALL_PATH?}
 sudo python ${PIP_INSTALL_PATH?}
 sudo pip install ansible
 
