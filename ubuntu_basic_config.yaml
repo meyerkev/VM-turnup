@@ -29,6 +29,7 @@
       - python-is-python3
       - vim
       - kde-plasma-desktop
+      - vlc
       state: latest
     become: yes
   - name: Install Chrome
