@@ -24,8 +24,20 @@
       - python3-apt
       - python3-distutils
       - python-is-python3
+      - vim
       state: latest
     become: yes
+  - name: Test for vim in EDITOR
+    shell: 
+      cmd: "grep 'export EDITOR=vim' ~/.bashrc"
+    register: test_vim_editor
+    failed_when: "test_vim_editor.rc > 1"
+    changed_when: false
+  - name: add pip bin to bashrc
+    lineinfile:
+      dest: ~/.bashrc
+      line: "export EDITOR=vim"
+    when: test_vim_editor.rc != "0"
   - name: Copy .vimrc
     ansible.builtin.copy:
       src: .vimrc
