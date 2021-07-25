@@ -28,6 +28,7 @@
       - python3-distutils
       - python-is-python3
       - vim
+      - kde-plasma-desktop
       state: latest
     become: yes
   - name: Install Chrome
