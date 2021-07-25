@@ -17,6 +17,9 @@
   - name: Install dependency packages
     apt:
       name: 
+      - git
+      - wget
+      - curl
       - net-tools
       - unattended-upgrades
       - software-properties-common
@@ -27,6 +30,9 @@
       - vim
       state: latest
     become: yes
+  - name: Install Chrome
+    apt:
+      deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - name: Test for vim in EDITOR
     shell: 
       cmd: "grep 'export EDITOR=vim' ~/.bashrc"
