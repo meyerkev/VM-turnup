@@ -18,5 +18,3 @@ git config --global user.name "Kevin Meyer"
 cd /tmp
 git clone https://github.com/meyerkev/VM-turnup.git
 cd VM-turnup
-
-ansible-playbook ubuntu_basic_config.yaml
