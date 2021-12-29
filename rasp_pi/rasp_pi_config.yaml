@@ -1,9 +1,9 @@
 - hosts: piholes
   tasks:
-  - name: /boot/config.txt
+  - name: usrcfg.txt
     ansible.builtin.copy:
       src: boot_config.txt
-      dest: /boot/config.txt
+      dest: /boot/firmware/usercfg.txt
       owner: root
       group: root
       mode: 0755
@@ -28,21 +28,33 @@
       - curl
       - net-tools
       - unattended-upgrades
+      - python-is-python3
       - python3
       - python3-distutils
       - python3-pip
       - vim
       - build-essential
+      - whois
+      - wireshark
       state: latest
     become: yes
-  - name: Python3
-    file:
-      src: "/usr/bin/python3"
-      path: "/usr/bin/python"
-      state: link
+  - name: Create user password 
+    ansible.builtin.command: 
+      cmd: echo {{ remote_username }}_pihole
+    register: user_password
+  - name: Add group
+    group:
+      name: "{{ remote_username }}"
     become: yes
   - name: Add user
     user:
       name: "{{ remote_username }}"
+      group: "{{ remote_username }}"
+      groups: "sudo"
+      password: "{{ user_password | string | password_hash('sha512') }}"
+      append: yes
+    become: yes
+  - name: Unconditionally reboot the machine with all defaults
+    reboot:
     become: yes
 # TODO: Automate the actual install, but since I'm putting this in people's homes...
