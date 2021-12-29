@@ -36,6 +36,8 @@
       - build-essential
       - whois
       - wireshark
+      - wireguard
+      - sysstat
       state: latest
     become: yes
   - name: Create user password 
