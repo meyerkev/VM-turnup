@@ -1,5 +1,3 @@
-set paste
-
 set tabstop=4
 set softtabstop=4
 set expandtab
@@ -214,6 +212,9 @@ if has("autocmd")
     \| exe "normal! g'\"" | endif
 endif
 
-autocmd BufWritePre *.py *.yaml *.yml *.cpp *.cc *.h %s/\s\+$//e
+autocmd BufWritePre *.py,*.yaml,*.yml,*.cpp,*.cc,*.h %s/\s\+$//e
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yml setlocal ts=2 sts=2 sw=2 expandtab
+
+set nopaste paste
+
