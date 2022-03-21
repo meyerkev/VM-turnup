@@ -215,6 +215,7 @@ endif
 autocmd BufWritePre *.py,*.yaml,*.yml,*.cpp,*.cc,*.h %s/\s\+$//e
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType Makefile setlocal noexpandtab
 
 set nopaste paste
 
